@@ -71,3 +71,111 @@
     }
     .product img {
       width: 100%;
+      height: auto;
+      border-radius: 6px;
+      margin-bottom: 12px;
+    }
+    .product h3 {
+      margin: 10px 0 5px;
+      font-size: 1.3em;
+    }
+    .product small {
+      display: block;
+      color: #999;
+      margin-bottom: 10px;
+    }
+    .product p {
+      font-size: 0.95em;
+      margin-bottom: 15px;
+      color: #555;
+    }
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      background: #111;
+      color: white;
+    }
+    footer a {
+      color: #ccc;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>L’éléganceEssence 🔥</h1>
+  <p>Perfumes artesanales con carácter. Vive la elegancia en cada nota.</p>
+  <a href="#coleccion" class="btn">Descubre nuestra colección</a>
+</header>
+
+<section class="section" id="coleccion">
+  <div class="search-filter">
+    <input type="text" id="busqueda" placeholder="Buscar perfume...">
+    <select id="filtro">
+      <option value="todos">Todos</option>
+      <option value="cítrico">Cítrico</option>
+      <option value="amaderado">Amaderado</option>
+      <option value="oriental">Oriental</option>
+    </select>
+  </div>
+
+  <div class="products" id="productos">
+    <div class="product" data-tipo="cítrico">
+      <img src="https://via.placeholder.com/250x330?text=Mandarin+Sky" alt="Mandarin Sky">
+      <h3>Mandarin Sky</h3>
+      <small>$45.00 | Cítrico</small>
+      <p>Notas: mandarina italiana, neroli y almizcle blanco. Refrescante y vibrante, ideal para el día.</p>
+      <a href="#" class="btn">Comprar</a>
+    </div>
+
+    <div class="product" data-tipo="amaderado">
+      <img src="https://via.placeholder.com/250x330?text=Oud+Velours" alt="Oud Velours">
+      <h3>Oud Velours</h3>
+      <small>$55.00 | Amaderado</small>
+      <p>Notas: oud camboyano, rosa turca, vainilla. Profundo y sensual, para ocasiones especiales.</p>
+      <a href="#" class="btn">Comprar</a>
+    </div>
+
+    <div class="product" data-tipo="oriental">
+      <img src="https://via.placeholder.com/250x330?text=Noir+Amour" alt="Noir Amour">
+      <h3>Noir Amour</h3>
+      <small>$49.00 | Oriental</small>
+      <p>Notas: ámbar, jazmín, canela. Misterioso y seductor, una fragancia envolvente.</p>
+      <a href="#" class="btn">Comprar</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2025 L’éléganceEssence. Todos los derechos reservados.</p>
+  <p><a href="#">Política de devolución</a> | <a href="#">Contacto</a> | <a href="#">Instagram</a></p>
+</footer>
+
+<script>
+  const filtro = document.getElementById('filtro');
+  const busqueda = document.getElementById('busqueda');
+  const productos = document.querySelectorAll('.product');
+
+  function filtrar() {
+    const texto = busqueda.value.toLowerCase();
+    const tipo = filtro.value;
+
+    productos.forEach(p => {
+      const nombre = p.querySelector('h3').textContent.toLowerCase();
+      const tipoProducto = p.dataset.tipo;
+
+      const coincideTexto = nombre.includes(texto);
+      const coincideTipo = tipo === 'todos' || tipo === tipoProducto;
+
+      p.style.display = (coincideTexto && coincideTipo) ? 'block' : 'none';
+    });
+  }
+
+  filtro.addEventListener('change', filtrar);
+  busqueda.addEventListener('input', filtrar);
+</script>
+
+</body>
+</html>
